@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using DungeonRPG2.D.Scripts.General;
 
 public partial class StateMachine : Node
 {
@@ -9,7 +10,7 @@ public partial class StateMachine : Node
 
     public override void _Ready()
     {
-        _currentState.Notification(5001);
+        _currentState.Notification(GameConstants.NOTIFICATION_ENTER_STATE);
     }
 
     public void SwitchState<T>()
@@ -31,11 +32,11 @@ public partial class StateMachine : Node
         }
         
         // Notify to disable node phyciscs process
-        _currentState.Notification(5002);
+        _currentState.Notification(GameConstants.NOTIFICATION_EXIT_STATE);
         
         _previousState = _currentState;
         _currentState = newState;
         
-        _currentState.Notification(5001);
+        _currentState.Notification(GameConstants.NOTIFICATION_ENTER_STATE);
     }
 }

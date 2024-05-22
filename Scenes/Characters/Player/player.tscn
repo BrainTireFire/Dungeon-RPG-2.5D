@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=3 uid="uid://5by0ihkt3yj7"]
+[gd_scene load_steps=48 format=3 uid="uid://5by0ihkt3yj7"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/Player.cs" id="1_m40f8"]
 [ext_resource type="Texture2D" uid="uid://bgt7tj8445xpe" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_wl8i8"]
@@ -41,6 +41,8 @@
 [ext_resource type="Texture2D" uid="uid://cy5ljeakvum4b" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_iuaie"]
 [ext_resource type="Texture2D" uid="uid://cwfvus2djftew" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_hr5c6"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerDashState.cs" id="40_btg4t"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnarc"]
 
 [sub_resource type="Animation" id="Animation_d8wun"]
 resource_name = "Dash"
@@ -116,13 +118,21 @@ _data = {
 "RESET": SubResource("Animation_d16ji")
 }
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("animationPlayerNode", "spriteNode", "stateMachineNode")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("AnimationPlayerNode", "SpriteNode", "StateMachineNode")]
+collision_layer = 2
+floor_max_angle = 1.55334
+floor_snap_length = 0.2
 script = ExtResource("1_m40f8")
-animationPlayerNode = NodePath("AnimationPlayer")
-spriteNode = NodePath("Sprite3D")
-stateMachineNode = NodePath("StateMachine")
+AnimationPlayerNode = NodePath("AnimationPlayer")
+SpriteNode = NodePath("Sprite3D")
+StateMachineNode = NodePath("StateMachine")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.313854, 0)
+shape = SubResource("CapsuleShape3D_bnarc")
 
 [node name="Sprite3D" type="Sprite3D" parent="."]
+pixel_size = 0.0025
 texture_filter = 0
 texture = ExtResource("1_wl8i8")
 
