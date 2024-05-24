@@ -35,11 +35,11 @@
 [ext_resource type="Texture2D" uid="uid://btrcqc8krf76a" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_000.png" id="32_ynq6w"]
 [ext_resource type="Texture2D" uid="uid://cwkfspel7x6mo" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_001.png" id="33_6hl3w"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerMoveState.cs" id="33_avgwo"]
-[ext_resource type="Script" path="res://Scripts/Characters/StateMachine.cs" id="34_1e7ni"]
 [ext_resource type="Texture2D" uid="uid://ejashq5fjtkv" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_002.png" id="34_dph3o"]
 [ext_resource type="Texture2D" uid="uid://bjt5p7ofnstco" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_003.png" id="35_j62do"]
 [ext_resource type="Texture2D" uid="uid://cy5ljeakvum4b" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_004.png" id="36_iuaie"]
 [ext_resource type="Texture2D" uid="uid://cwfvus2djftew" path="res://Assets/Sprites/Characters/Player/Sliding/Sliding_005.png" id="37_hr5c6"]
+[ext_resource type="PackedScene" uid="uid://i6m7egwucxvb" path="res://Scenes/Characters/state_machine.tscn" id="38_nahgm"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerDashState.cs" id="40_btg4t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnarc"]
@@ -141,8 +141,7 @@ libraries = {
 "": SubResource("AnimationLibrary_qrv7f")
 }
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("_currentState", "_states")]
-script = ExtResource("34_1e7ni")
+[node name="StateMachine" parent="." node_paths=PackedStringArray("_currentState", "_states") instance=ExtResource("38_nahgm")]
 _currentState = NodePath("IdleState")
 _states = [NodePath("IdleState"), NodePath("MoveState"), NodePath("DashState")]
 
