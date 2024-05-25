@@ -29,8 +29,11 @@ public abstract partial class CharacterState : Node
         {
             SetPhysicsProcess(false);
             SetProcessInput(false);
+            
+            ExitState();
         }
     }
 
     protected virtual void EnterState() { }
+    protected virtual void ExitState() { }
 }
