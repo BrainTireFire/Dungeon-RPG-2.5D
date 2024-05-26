@@ -1,13 +1,20 @@
-﻿using Godot;
+﻿using DungeonRPG2.D.Scripts.Resources;
+using Godot;
+using System.Linq;
 
 namespace DungeonRPG2.D.Scripts.Characters;
 
 public abstract partial class Character : CharacterBody3D
 {
+    [Export] private StatResource[] _stats;
+    
     [ExportGroup("Required Nodes")]
     [Export] public AnimationPlayer AnimationPlayerNode { get; private set; }
     [Export] public Sprite3D SpriteNode { get; private set; }
     [Export] public StateMachine StateMachineNode { get; private set; }
+    [Export] public Area3D HurtboxNode { get; private set; }
+    [Export] public Area3D HitboxxNode { get; private set; }
+    [Export] public CollisionShape3D HitboxShapeNode { get; private set; }
     
     
     [ExportGroup("AI Nodes")]
@@ -18,6 +25,11 @@ public abstract partial class Character : CharacterBody3D
     
     
     public Vector2 direction = new();
+
+    public override void _Ready()
+    {
+        HurtboxNode.AreaEntered += HandleHurtboxEntered;
+    }
     
     public void Flip()
     {
@@ -30,5 +42,24 @@ public abstract partial class Character : CharacterBody3D
             
         bool isMovingLeft = Velocity.X < 0;
         SpriteNode.FlipH = isMovingLeft;
+    }
+    
+    public void ToggleHitbox(bool flag)
+    {
+        HitboxShapeNode.Disabled = flag;
+    }
+    
+    private void HandleHurtboxEntered(Area3D area)
+    {
+        StatResource health = GetStatResource(Stat.Health);
+
+        Character player = area.GetOwner<Character>();
+        
+        health.StatValue -= player.GetStatResource(Stat.Strength).StatValue;
+    }
+
+    public StatResource GetStatResource(Stat stat)
+    {
+        return _stats.FirstOrDefault(element => element.StatType == stat);
     }
 }

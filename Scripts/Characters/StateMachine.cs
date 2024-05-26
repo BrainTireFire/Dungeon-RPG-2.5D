@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using System.Linq;
 using DungeonRPG2.D.Scripts.General;
 
 public partial class StateMachine : Node
@@ -15,19 +15,15 @@ public partial class StateMachine : Node
 
     public void SwitchState<T>()
     {
-        Node newState = null;
-
-        foreach (Node state in _states)
-        {
-            if (state is T)
-            {
-                newState = state;
-            }
-        }
-
+        Node newState = _states.FirstOrDefault(state => state is T);
+        
         if (newState == null)  
         {
-            GD.PrintErr(GetType().Name + "newState not found.");
+            return;
+        }
+
+        if (_currentState is T)
+        {
             return;
         }
         
