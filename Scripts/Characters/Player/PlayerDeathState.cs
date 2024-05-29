@@ -13,6 +13,8 @@ public partial class PlayerDeathState : PlayerState
     
     private void HandleAnimationFinished(StringName animname)
     {
+        GameEvents.RaiseEndGame();
+        
         characterNode.QueueFree();
     }
 }

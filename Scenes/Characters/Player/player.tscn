@@ -1,9 +1,10 @@
-[gd_scene load_steps=96 format=3 uid="uid://5by0ihkt3yj7"]
+[gd_scene load_steps=95 format=3 uid="uid://5by0ihkt3yj7"]
 
 [ext_resource type="Script" path="res://Scripts/Characters/Player/Player.cs" id="1_m40f8"]
 [ext_resource type="Texture2D" uid="uid://bgt7tj8445xpe" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_000.png" id="1_wl8i8"]
-[ext_resource type="Script" path="res://Scripts/Resources/StatResource.cs" id="2_2r4lh"]
 [ext_resource type="Texture2D" uid="uid://fq16l4cnbtu8" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_001.png" id="2_hgr4u"]
+[ext_resource type="Resource" uid="uid://cqywed68tvsbq" path="res://Resources/player_health_stat.tres" id="2_r3ca4"]
+[ext_resource type="Resource" uid="uid://ctokqa8n8pjh1" path="res://Resources/player_strength_stat.tres" id="3_acxux"]
 [ext_resource type="Texture2D" uid="uid://ovoxanwkbhem" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_002.png" id="3_h0ntp"]
 [ext_resource type="Texture2D" uid="uid://c67d6mxsdp5pv" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_003.png" id="4_ih1f2"]
 [ext_resource type="Texture2D" uid="uid://cpfbl70rtv2wf" path="res://Assets/Sprites/Characters/Player/Idle Blinking/Idle Blinking_004.png" id="5_gkb5p"]
@@ -83,16 +84,6 @@
 [ext_resource type="Texture2D" uid="uid://b84mf4jihqia7" path="res://Assets/Sprites/Characters/Player/Dying/Dying_014.png" id="76_iue06"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerAttackState.cs" id="81_vsshp"]
 [ext_resource type="Script" path="res://Scripts/Characters/Player/PlayerDeathState.cs" id="83_7orwx"]
-
-[sub_resource type="Resource" id="Resource_vhyln"]
-script = ExtResource("2_2r4lh")
-StatType = 0
-StatValue = 100.0
-
-[sub_resource type="Resource" id="Resource_yahyh"]
-script = ExtResource("2_2r4lh")
-StatType = 1
-StatValue = 3.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_bnarc"]
 
@@ -258,7 +249,7 @@ collision_mask = 5
 floor_max_angle = 1.55334
 floor_snap_length = 0.2
 script = ExtResource("1_m40f8")
-_stats = Array[Object]([SubResource("Resource_vhyln"), SubResource("Resource_yahyh")])
+_stats = Array[Object]([ExtResource("2_r3ca4"), ExtResource("3_acxux")])
 AnimationPlayerNode = NodePath("AnimationPlayer")
 SpriteNode = NodePath("Sprite3D")
 StateMachineNode = NodePath("StateMachine")
